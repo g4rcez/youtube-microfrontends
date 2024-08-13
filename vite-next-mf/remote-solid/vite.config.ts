@@ -1,9 +1,8 @@
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react-swc'
-import tsconfig from "vite-tsconfig-paths";
+import solid from 'vite-plugin-solid'
 
 const buildLib = () => defineConfig({
-  plugins: [react(), tsconfig({ configNames: ["tsconfig.lib.json"] })],
+  plugins: [solid()],
   define: {
     'process.env': { NODE_ENV: 'production' }
   },
@@ -25,9 +24,10 @@ const buildLib = () => defineConfig({
 
 // https://vitejs.dev/config/
 const buildUi = () => defineConfig({
-  plugins: [react()],
+  plugins: [solid()],
 })
 
 const fn = process.env.NODE_ENV === "production" ? buildLib : buildUi;
 
 export default fn;
+
